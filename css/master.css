@@ -1,0 +1,87 @@
+
+.wrapper {
+  width: 80%;
+}
+
+.container {
+  margin-top: 4vh;
+  max-width: 360px;
+}
+
+.fret-end {
+  border-right: 2px solid black;
+}
+
+.fret-bottom {
+  border-bottom: 2px solid black;
+}
+
+.guitar-grid {
+  border-top: 2px solid #bfbfbf;
+  border-left: 2px solid black;
+
+  height: 80px;
+}
+.above-fret {
+  margin-top: 20px;
+}
+
+.fret-begin {
+  border-top: 8px solid black;
+}
+
+/* Open / Closed Notes */
+.string-check {
+  position: absolute;
+  left: -12px;
+  bottom: -10px;
+  font-size: 35px;
+}
+
+.last-string-check {
+  position: absolute;
+  right: -10px;
+  bottom: -10px;
+  font-size: 35px;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  left: -23px;
+  top: 11px;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+}
+
+.last-checkmark {
+  position: absolute;
+  right : -24px;
+  top: 11px;
+  height: 45px;
+  width: 45px;
+  border-radius: 50%;
+}
+
+.checkmark:hover , .last-checkmark:hover {
+  background-color: #ccc;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#barre-input {
+  width: 30px;
+}

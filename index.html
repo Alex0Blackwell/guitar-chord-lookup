@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+
+    <!-- Mobile scale -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Boostrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+    crossorigin="anonymous">
+
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="./css/master.css">
+
+    <title>Guitar Lookup</title>
+  </head>
+  <body>
+    <br><br>
+    <div class="container wrapper">
+      <div class="row above-fret">
+        <div class="col-2">
+          <div id="string-1" data-checked="false" class="string-check" onclick="toggleStringClosed(this)">O</div>
+        </div>
+        <div class="col-2">
+          <div id="string-2" data-checked="false" class="string-check" onclick="toggleStringClosed(this)">O</div>
+        </div>
+        <div class="col-2">
+          <div id="string-3" data-checked="false" class="string-check" onclick="toggleStringClosed(this)">O</div>
+        </div>
+        <div class="col-2">
+          <div id="string-4" data-checked="false" class="string-check" onclick="toggleStringClosed(this)">O</div>
+        </div>
+        <div class="col-2">
+          <div id="string-5" data-checked="false" class="string-check" onclick="toggleStringClosed(this)">O</div>
+          <div id="string-6" data-checked="false" class="last-string-check" onclick="toggleStringClosed(this)">O</div>
+        </div>
+      </div>
+
+      <!-- Row 1 -->
+      <div class="  row">
+        <div class="col-2 guitar-grid fret-begin">
+          <div id="1-1" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 guitar-grid fret-begin">
+          <div id="1-2" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 guitar-grid fret-begin">
+          <div id="1-3" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 guitar-grid fret-begin">
+          <div id="1-4" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 guitar-grid fret-begin fret-end">
+          <div id="1-5" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+          <div id="1-6" data-checked="false" class="last-checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 barre">
+          <input id="barre-input" type="number" placeholder="0">
+          <p>fr</p>
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="  row">
+        <div class="col-2 guitar-grid">
+          <div id="2-1" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 guitar-grid">
+          <div id="2-2" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 guitar-grid">
+          <div id="2-3" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 guitar-grid">
+          <div id="2-4" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 guitar-grid fret-end">
+          <div id="2-5" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+          <div id="2-6" data-checked="false" class="last-checkmark" onclick="toggleClick(this)"></div>
+        </div>
+      </div>
+
+      <!-- Row 3 -->
+      <div class="  row">
+        <div class="col-2 guitar-grid">
+          <div id="3-1" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 guitar-grid">
+          <div id="3-2" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 guitar-grid">
+          <div id="3-3" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 guitar-grid">
+          <div id="3-4" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 guitar-grid fret-end">
+          <div id="3-5" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+          <div id="3-6" data-checked="false" class="last-checkmark" onclick="toggleClick(this)"></div>
+        </div>
+      </div>
+
+      <!-- Row 4 -->
+      <div class="  row">
+        <div class="col-2 guitar-grid">
+          <div id="4-1" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 guitar-grid">
+          <div id="4-2" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 guitar-grid">
+          <div id="4-3" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 guitar-grid">
+          <div id="4-4" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 guitar-grid fret-end">
+          <div id="4-5" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+          <div id="4-6" data-checked="false" class="last-checkmark" onclick="toggleClick(this)"></div>
+        </div>
+      </div>
+
+      <!-- Row 5 -->
+      <div class="  row">
+        <div class="col-2 guitar-grid fret-bottom">
+          <div id="5-1" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 guitar-grid fret-bottom">
+          <div id="5-2" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 guitar-grid fret-bottom">
+          <div id="5-3" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 guitar-grid fret-bottom">
+          <div id="5-4" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+        </div>
+        <div class="col-2 guitar-grid fret-bottom fret-end">
+          <div id="5-5" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
+          <div id="5-6" data-checked="false" class="last-checkmark" onclick="toggleClick(this)"></div>
+        </div>
+      </div>
+
+    </div>
+
+
+    <script src="./js/main.js" charset="utf-8"></script>
+  </body>
+</html>
