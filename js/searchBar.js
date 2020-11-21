@@ -9,11 +9,12 @@ function filterFunction() {
   a = div.getElementsByTagName("a");
 
   for (i = 0; i < a.length; i++) {
-    txtValue = a[i].innerHTML;
-    if (txtValue.toUpperCase().indexOf(filter) > -1) {
-      a[i].style.display = "";
-    } else {
-      a[i].style.display = "none";
+    txtValue = a[i].innerHTML.toUpperCase();
+    let same = true;
+    for(let j = 0; j < filter.length && same; ++j) {
+      if(txtValue[j] != filter[j])
+        same = false;
     }
+    a[i].style.display = (same ? "" : "none");
   }
 }
