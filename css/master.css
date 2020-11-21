@@ -45,11 +45,17 @@
   font-size: 35px;
 }
 
-/* Create a custom checkbox */
+.string-check:hover, .last-string-check:hover {
+  color: #ccc;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+/* finger down markers */
 .checkmark {
   position: absolute;
   left: -23px;
-  top: 11px;
+  top: 15px;
   height: 45px;
   width: 45px;
   border-radius: 50%;
@@ -64,10 +70,55 @@
   border-radius: 50%;
 }
 
-.checkmark:hover , .last-checkmark:hover {
+.checkmark:hover, .last-checkmark:hover {
   background-color: #ccc;
   cursor: pointer;
   transition: background-color 0.2s;
+}
+
+.barre-input-wrapper {
+  padding-left: 10px;
+}
+
+/* barre graphic */
+.barre-overlay {
+  position: absolute;
+  float: right;
+  margin-top: 25px;
+  height: 20px;
+  border-radius: 15px;
+}
+
+/* barre the whole fret */
+.barre-overlay-6 {
+  background-color: black;
+  border: 10px solid black;
+  margin-left: -10px;
+  width: 67%;
+  max-width: 300px;
+}
+
+/* barre all but E */
+.barre-overlay-5 {
+  background-color: black;
+  border: 10px solid black;
+  margin-left: 50px;
+  width: 51%;
+  max-width: 240px;
+}
+
+/* barre all but E and A */
+.barre-overlay-4 {
+  background-color: black;
+  border: 10px solid black;
+  margin-left: 110px;
+  width: 180px;
+}
+@media only screen and (max-width: 420px) {
+.barre-overlay-4 {
+    width: 35%;
+    transition: width 0.2s;
+  }
 }
 
 /* Chrome, Safari, Edge, Opera */

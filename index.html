@@ -37,8 +37,7 @@
           <div id="string-6" data-checked="false" class="last-string-check" onclick="toggleStringClosed(this)">O</div>
         </div>
       </div>
-
-      <!-- Row 1 -->
+            <!-- Row 1 -->
       <div class="  row">
         <div class="col-2 guitar-grid fret-begin">
           <div id="1-1" data-checked="false" class="checkmark" onclick="toggleClick(this)"></div>
@@ -57,9 +56,15 @@
           <div id="1-6" data-checked="false" class="last-checkmark" onclick="toggleClick(this)"></div>
         </div>
         <div class="col-2 barre">
-          <input id="barre-input" type="number" placeholder="0">
-          <p>fr</p>
+          <div class="barre-input-wrapper">
+            <input id="barre-input" type="number" placeholder="0" oninput="doBarreGraphic(this)">
+            <p>fr</p>
+
+          </div>
         </div>
+
+        <hr id="barreGraphic" class="barre-overlay">
+
       </div>
 
       <!-- Row 2 -->
