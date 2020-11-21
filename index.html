@@ -150,9 +150,57 @@
 
     <div class="chord-area text-center col-12">
       <h2 id="chordText">I don't know this chord</h2>
+
+      <div class="dropdown">
+      <div id="myDropdown" class="dropdown-content">
+        <input type="text" placeholder="Search..." id="myInput" onkeyup="filterFunction()">
+        <a onclick="displayChord(this)">A</a>
+        <a onclick="displayChord(this)">Am</a>
+        <a onclick="displayChord(this)">A7</a>
+        <a onclick="displayChord(this)">A#/Bb</a>
+        <a onclick="displayChord(this)">A#/Bbm</a>
+        <a onclick="displayChord(this)">A#/Bbm7</a>
+        <a onclick="displayChord(this)">B</a>
+        <a onclick="displayChord(this)">Bb</a>
+        <a onclick="displayChord(this)">Bm</a>
+        <a onclick="displayChord(this)">B7</a>
+        <a onclick="displayChord(this)">C</a>
+        <a onclick="displayChord(this)">Cm</a>
+        <a onclick="displayChord(this)">C7</a>
+        <a onclick="displayChord(this)">C#/Db</a>
+        <a onclick="displayChord(this)">C#/Dbm</a>
+        <a onclick="displayChord(this)">C#/Db7</a>
+        <a onclick="displayChord(this)">D</a>
+        <a onclick="displayChord(this)">Dm</a>
+        <a onclick="displayChord(this)">D7</a>
+        <a onclick="displayChord(this)">D#/Eb</a>
+        <a onclick="displayChord(this)">D#/Em</a>
+        <a onclick="displayChord(this)">D#/Eb7</a>
+        <a onclick="displayChord(this)">E</a>
+        <a onclick="displayChord(this)">Em</a>
+        <a onclick="displayChord(this)">E7</a>
+        <a onclick="displayChord(this)">E5</a>
+        <a onclick="displayChord(this)">F</a>
+        <a onclick="displayChord(this)">Fmaj7</a>
+        <a onclick="displayChord(this)">Fm</a>
+        <a onclick="displayChord(this)">F7</a>
+        <a onclick="displayChord(this)">F5</a>
+        <a onclick="displayChord(this)">F#/Gb</a>
+        <a onclick="displayChord(this)">F#/Gbm</a>
+        <a onclick="displayChord(this)">F#/Gb5</a>
+        <a onclick="displayChord(this)">G</a>
+        <a onclick="displayChord(this)">Gm</a>
+        <a onclick="displayChord(this)">G7</a>
+        <a onclick="displayChord(this)">G5</a>
+        <a onclick="displayChord(this)">G#/Ab</a>
+        <a onclick="displayChord(this)">G#/Abm</a>
+        <a onclick="displayChord(this)">G#/Ab7</a>
+      </div>
+    </div>
     </div>
 
 
     <script src="./js/main.js" charset="utf-8"></script>
+    <script src="./js/searchBar.js" charset="utf-8"></script>
   </body>
 </html>

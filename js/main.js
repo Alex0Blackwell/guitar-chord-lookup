@@ -21,6 +21,7 @@ var chordMap = {
   "0,-1,3,2,0,1,0" : "C",
   "0,0,3,1,0,1,3" : "Cm",
   "0,-1,3,2,3,1,0" : "C7",
+
   "9,0,3,3,2,0,0" : "C#/Db",
   "9,0,3,3,0,0,0" : "C#/Dbm",
   "9,0,3,0,2,0,0" : "C#/Db7",
@@ -28,6 +29,7 @@ var chordMap = {
   "0,-1,-1,0,2,3,2" : "D",
   "0,-1,-1,0,2,3,1" : "Dm",
   "0,-1,-1,0,1,1,2" : "D7",
+
   "11,0,3,3,1,0,0" : "D#/Eb",
   "11,0,3,3,0,0,0" : "D#/Em",
   "11,0,3,0,2,0,0" : "D#/Eb7",
@@ -40,8 +42,8 @@ var chordMap = {
   "1,0,2,2,1,0,0" : "F",
   "0,1,0,2,2,1,-1" : "Fmaj7",
   "1,0,3,3,0,0,0" : "Fm",
-  "1,0,3,0,2,0,0" : "Fm",
-  "0,1,0,3,-1,-1,-1" : "E5",
+  "1,0,3,0,2,0,0" : "F7",
+  "0,1,0,3,-1,-1,-1" : "F5",
 
   "2,0,3,3,2,0,0" : "F#/Gb",
   "2,0,3,3,0,0,0" : "F#/Gbm",
@@ -60,20 +62,49 @@ var chordMap = {
   "0,-1,0,2,2,2,0" : "A",
   "0,-1,0,2,2,1,0" : "Am",
   "0,-1,0,2,0,2,0" : "A7",
-  "0,-1,0,2,0,2,0" : "A7",
 
   "6,0,3,3,2,0,0" : "A#/Bb",
   "6,0,3,3,0,0,0" : "A#/Bbm",
-  "6,0,3,0,2,0,0" : "A#/Bbm",
+  "6,0,3,0,2,0,0" : "A#/Bbm7",
 
-  "7,0,3,3,2,0,0" : "B",
   "2,-1,0,3,3,3,0" : "B",
+  "7,0,3,3,2,0,0" : "B",
   "1,-1,0,3,3,3,0" : "Bb",
   "7,0,3,3,0,0,0" : "Bm",
   "2,-1,0,3,3,2,0" : "Bm",
   "0,-1,2,0,2,0,2" : "B7",
 }
 
+
+/**
+ * Internal function that clears diagram and saves the data to make the diagram.
+ * This function clears the presses, open/closed strings and the barre.
+ * This is because they work as a toggle system and we can abstract away
+ * some work if we set the toggles all to be off.
+ */
+function clearDiagram() {
+  // clear presses
+  for(let i = 1; i <= 5; ++i) {
+    for(let j = 1; j <= 6; ++j) {
+      let el = document.getElementById(i+"-"+j);
+      el.style.backgroundColor = '';
+      el.setAttribute('data-checked',  "false")
+    }
+  }
+  // clear closed and open strings
+  for(let i = 1; i <= 6; ++i) {
+    let el = document.getElementById("string-"+i);
+    el.innerHTML = 'O';
+    el.setAttribute('data-checked',  "false")
+
+  }
+  // clear the barre if there is one
+  for(let i = 4; i <= 6; ++i) {
+    document.getElementById("barreGraphic").classList.remove("barre-overlay-"+i);
+  }
+  barreStartingAt = 6;
+  document.getElementById("barre-input").value = '';
+}
 
 
 /**
@@ -264,8 +295,7 @@ function doBarreGraphic(el) {
     barreStartingAt = 6;
     // Remove barre from pressed strings
     pressedDownStrings[0] = 0;
-
-
+    
     // Add back open chords
     for(let i = 1; i <= 6; ++i) {
       pressedDownStrings[i] = Math.max(pressedDownStrings[i], 0);
@@ -275,4 +305,50 @@ function doBarreGraphic(el) {
   }
 
   checkIfChord();
+}
+
+
+/**
+ * Internal function to get a key by its value; O(n).
+ */
+function getByValue(map, searchValue) {
+  for(let key in map) {
+    if(map[key] == searchValue)
+      return key;
+  }
+}
+
+/**
+ * Display the given chord on the diagram.
+ */
+function displayChord(el) {
+  // first, clear the diagram that involves toggling so we can reuse functions
+  clearDiagram();
+
+  pressedDownStrings = getByValue(chordMap, el.innerHTML).split(',');
+
+  for(let i = 0; i < pressedDownStrings.length; ++i) {
+    pressedDownStrings[i] = parseInt(pressedDownStrings[i]);
+  }
+
+
+  for(let i = 1; i <= 6; ++i) {
+    if(pressedDownStrings[i] == -1) {
+      // set closed string to closed
+      toggleStringClosed(document.getElementById("string-"+i));
+    }
+    // if it's an open chord do nothing
+    else if(pressedDownStrings[i] != 0) {
+      let id = pressedDownStrings[i]+'-'+i;
+      toggleClick(document.getElementById(pressedDownStrings[i]+'-'+i));
+    }
+  }
+
+  // really setting the barre :)
+  if(pressedDownStrings[0] != 0) {
+    let barreInput = document.getElementById("barre-input");
+    barreInput.value = pressedDownStrings[0];
+
+    doBarreGraphic(barreInput);
+  }
 }
