@@ -17,6 +17,64 @@ var barreStartingAt = 6;
 // -1 represents closed chord X
 var pressedDownStrings = [0, 0, 0, 0, 0, 0, 0];
 
+var chordMap = {
+  "0,-1,3,2,0,1,0" : "C",
+  "0,0,3,1,0,1,3" : "Cm",
+  "0,-1,3,2,3,1,0" : "C7",
+  "9,0,3,3,2,0,0" : "C#/Db",
+  "9,0,3,3,0,0,0" : "C#/Dbm",
+  "9,0,3,0,2,0,0" : "C#/Db7",
+
+  "0,-1,-1,0,2,3,2" : "D",
+  "0,-1,-1,0,2,3,1" : "Dm",
+  "0,-1,-1,0,1,1,2" : "D7",
+  "11,0,3,3,1,0,0" : "D#/Eb",
+  "11,0,3,3,0,0,0" : "D#/Em",
+  "11,0,3,0,2,0,0" : "D#/Eb7",
+
+  "0,0,2,2,1,0,0" : "E",
+  "0,0,2,2,0,0,0" : "Em",
+  "0,0,2,0,1,0,0" : "E7",
+  "0,0,2,-1,-1,-1,-1" : "E5",
+
+  "1,0,2,2,1,0,0" : "F",
+  "0,1,0,2,2,1,-1" : "Fmaj7",
+  "1,0,3,3,0,0,0" : "Fm",
+  "1,0,3,0,2,0,0" : "Fm",
+  "0,1,0,3,-1,-1,-1" : "E5",
+
+  "2,0,3,3,2,0,0" : "F#/Gb",
+  "2,0,3,3,0,0,0" : "F#/Gbm",
+  "2,0,3,0,2,0,0" : "F#/Gb7",
+  "0,2,4,-1,-1,-1,-1" : "F#/Gb5",
+
+  "0,3,2,0,0,0,3" : "G",
+  "3,0,3,3,0,0,0" : "Gm",
+  "0,3,2,0,0,0,1" : "G7",
+  "0,3,5,-1,-1,-1,-1" : "G5",
+
+  "4,0,3,3,2,0,0" : "G#/Ab",
+  "4,0,3,3,0,0,0" : "G#/Abm",
+  "4,0,3,0,2,0,0" : "G#/Ab7",
+
+  "0,-1,0,2,2,2,0" : "A",
+  "0,-1,0,2,2,1,0" : "Am",
+  "0,-1,0,2,0,2,0" : "A7",
+  "0,-1,0,2,0,2,0" : "A7",
+
+  "6,0,3,3,2,0,0" : "A#/Bb",
+  "6,0,3,3,0,0,0" : "A#/Bbm",
+  "6,0,3,0,2,0,0" : "A#/Bbm",
+
+  "7,0,3,3,2,0,0" : "B",
+  "2,-1,0,3,3,3,0" : "B",
+  "1,-1,0,3,3,3,0" : "Bb",
+  "7,0,3,3,0,0,0" : "Bm",
+  "2,-1,0,3,3,2,0" : "Bm",
+  "0,-1,2,0,2,0,2" : "B7",
+}
+
+
 
 /**
  * Return true if the string already is being pressed.
@@ -63,6 +121,26 @@ function addOpenString(colNum) {
 
 
 /**
+ * Check to see if the current diagram is a real chord.
+ * Update text if it is a real chord.
+ * Update text if it is not a real chord.
+ */
+function checkIfChord() {
+  let chordName = chordMap[pressedDownStrings.toString()];
+
+  if(chordName) {
+    let ch = chordName.charAt(0);
+    let isVowel = (ch == 'A' || ch == 'E');
+    ch = (isVowel ? 'n' : '');
+    document.getElementById('chordText').innerHTML = `This is a${ch} ${chordName}`;
+
+  }
+  else
+    document.getElementById('chordText').innerHTML = "I don't know this chord";
+}
+
+
+/**
  * Event for adding a finger down onto a string.
  */
 function toggleClick(el) {
@@ -79,15 +157,19 @@ function toggleClick(el) {
       el.style.backgroundColor = "black";
       pressedDownStrings[colNum] = rowNum;
 
+      checkIfChord();
+
       removeOpenString(colNum);
     } else {
       // this string is not being pressed
       pressedDownStrings[colNum] = 0;
+
+      checkIfChord();
+
       el.style.backgroundColor = "";
 
       addOpenString(colNum);
     }
-    console.log(pressedDownStrings);
 
     el.setAttribute('data-checked',  isChecked)
   }
@@ -111,9 +193,11 @@ function toggleStringClosed(el) {
   }
   else {
     // it is currently an X and should be a O
-    el.innerHTML = "0";
+    el.innerHTML = "O";
     pressedDownStrings[colNum] = 0;
   }
+
+  checkIfChord();
 
   el.setAttribute('data-checked',  isChecked)
 }
@@ -157,7 +241,14 @@ function doBarreGraphic(el) {
       pressedDownStrings[0] = parseInt(el.value);
 
       // Remove open chords and set those pressed strings back to 0
+      // Remove presses under the barre
       for(let i = barreStartingAt; i <= 6; ++i) {
+        let underBarre = document.getElementById("1-"+i);
+        if(underBarre.getAttribute('data-checked') == "true") {
+          underBarre.style.backgroundColor = "";
+          pressedDownStrings[i] = 0;
+        }
+
         removeOpenString(i);
         pressedDownStrings[i] = Math.max(pressedDownStrings[i], 0);
       }
@@ -182,4 +273,6 @@ function doBarreGraphic(el) {
         addOpenString(i);
     }
   }
+
+  checkIfChord();
 }
