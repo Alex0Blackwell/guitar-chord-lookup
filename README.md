@@ -9,7 +9,7 @@
 <p align="center">
   <a href="#overview">Overview</a>
   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
-  <a href="#usage">Examples</a>
+  <a href="#examples">Examples</a>
   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#technologies">Technologies</a>
   &nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
