@@ -10,25 +10,36 @@ onStart();
 
 
 
+// Global variable E string being 1 D string being 3
+var barreStartingAt = 6;
+
+// let each element represent fr E A D G B E
+// -1 represents closed chord X
+var pressedDownStrings = [0, 0, 0, 0, 0, 0, 0];
+
+
 /**
  * Return true if the string already is being pressed.
  */
 function colToggled(el) {
   let res = false;
 
-  let rowNum = el.id.split('-')[0];
-  let colNum = el.id.split('-')[1];
+  let rowNum = parseInt(el.id.split('-')[0]);
+  let colNum = parseInt(el.id.split('-')[1]);
 
   let clickedItself = (el.getAttribute('data-checked') == "true");
+  let noOpen = document.getElementById("string-"+colNum).innerHTML == '';
 
-  if(document.getElementById("string-"+colNum).innerHTML == '' && !clickedItself)
+  let stringPressed = false
+  for(let i = 1; i <= 5; ++i) {
+    let nodeChecked = document.getElementById(i+'-'+colNum).getAttribute("data-checked");
+    if(nodeChecked == "true" && rowNum != i)
+      stringPressed = true;
+  }
+
+  if(stringPressed || (rowNum == 1 && colNum > barreStartingAt)) {
     res = true;
-  //
-  // for(let i = 1; i <= 5; ++i) {
-  //   let nodeChecked = document.getElementById(i+'-'+colNum).getAttribute("data-checked");
-  //   if(nodeChecked == "true" && rowNum != i)
-  //     res = true;
-  // }
+  }
 
   return res;
 }
@@ -43,9 +54,11 @@ function removeOpenString(colNum) {
 
 /**
  * Add the open string O.
+ * Don't add O if the string is being barred.
  */
 function addOpenString(colNum) {
-  document.getElementById("string-"+colNum).innerHTML= 'O';
+  if(colNum <= barreStartingAt)
+    document.getElementById("string-"+colNum).innerHTML= 'O';
 }
 
 
@@ -54,18 +67,27 @@ function addOpenString(colNum) {
  */
 function toggleClick(el) {
   let isChecked = el.getAttribute('data-checked');
-  let colNum = el.id.split('-')[1];
+
+  let rowNum = parseInt(el.id.split('-')[0]);
+  let colNum = parseInt(el.id.split('-')[1]);
 
   if(!colToggled(el)) {
      isChecked == "false" ?  isChecked = "true" :  isChecked = "false"
 
     if(isChecked == "true") {
+      // this string is being pressed
       el.style.backgroundColor = "black";
+      pressedDownStrings[colNum] = rowNum;
+
       removeOpenString(colNum);
     } else {
+      // this string is not being pressed
+      pressedDownStrings[colNum] = 0;
       el.style.backgroundColor = "";
+
       addOpenString(colNum);
     }
+    console.log(pressedDownStrings);
 
     el.setAttribute('data-checked',  isChecked)
   }
@@ -77,10 +99,21 @@ function toggleClick(el) {
  */
 function toggleStringClosed(el) {
   let  isChecked = el.getAttribute('data-checked')
+  let colNum = parseInt(el.id.split('-')[1]);
 
   isChecked == "false" ?  isChecked = "true" :  isChecked = "false"
 
-  el.innerHTML = ( isChecked == "true" ? "X" : "O");
+  // el.innerHTML = ( isChecked == "true" ? "X" : "O");
+  if(isChecked == "true") {
+    // set X and -1 for the pressed down strings
+    el.innerHTML = "X";
+    pressedDownStrings[colNum] = -1;
+  }
+  else {
+    // it is currently an X and should be a O
+    el.innerHTML = "0";
+    pressedDownStrings[colNum] = 0;
+  }
 
   el.setAttribute('data-checked',  isChecked)
 }
@@ -112,18 +145,23 @@ function barreUntil() {
 function doBarreGraphic(el) {
   if(el.value > 0 && el.value < 22) {
     // We have to add the barre graphic
+
     // Let E = 6, A = 5, ...
     // Don't allow barres of less than 4 strings
     let upToString = barreUntil();
+    barreStartingAt = 7 - upToString
     if(upToString >= 4) {
       document.getElementById("barreGraphic").classList.add("barre-overlay-"+upToString);
 
-      // Remove open chords
-      for(let i = 7-upToString; i <= 6; ++i) {
+      // Add barre to pressed strings
+      pressedDownStrings[0] = parseInt(el.value);
+
+      // Remove open chords and set those pressed strings back to 0
+      for(let i = barreStartingAt; i <= 6; ++i) {
         removeOpenString(i);
+        pressedDownStrings[i] = Math.max(pressedDownStrings[i], 0);
       }
     }
-
   }
   else {
     // We have to remove the barre graphic
@@ -131,9 +169,17 @@ function doBarreGraphic(el) {
       document.getElementById("barreGraphic").classList.remove("barre-overlay-"+i);
     }
 
+    // Set barre starting at back to the default 6
+    barreStartingAt = 6;
+    // Remove barre from pressed strings
+    pressedDownStrings[0] = 0;
+
+
     // Add back open chords
     for(let i = 1; i <= 6; ++i) {
-      addOpenString(i);
+      pressedDownStrings[i] = Math.max(pressedDownStrings[i], 0);
+      if(pressedDownStrings[i] == 0)
+        addOpenString(i);
     }
   }
 }
