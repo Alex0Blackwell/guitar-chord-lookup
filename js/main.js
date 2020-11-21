@@ -1,13 +1,22 @@
 /**
- * Function run exactly once on startup.
- */
+* Function run exactly once on startup.
+*/
 function onStart() {
   // Clear the input field
-  document.getElementById("barre-input").value="";
+  document.getElementById("barre-input").value = "";
+  document.getElementById("searchInput").value = "";
+  document.getElementById("allChords").style.display = "none";
 }
 
 onStart();
 
+
+/**
+ * on load
+ */
+$(window).on("load",function(){
+     $(".loader-wrapper").fadeOut("slow");
+});
 
 
 // Global variable E string being 1 D string being 3

@@ -14,9 +14,51 @@
     <!-- Custom styles -->
     <link rel="stylesheet" href="./css/master.css">
 
-    <title>Guitar Lookup</title>
+    <!-- fontawesome -->
+    <script src="https://kit.fontawesome.com/347ddfdf96.js" crossorigin="anonymous"></script>
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon.jpg">
+
+    <title>Chord Lookup</title>
   </head>
   <body>
+    <!-- loading gif -->
+    <div class="loader-wrapper">
+      <img id="loading-gif" src="./img/loading.gif">
+    </div>
+
+    <!-- Contains the drip -->
+    <div class="top"> </div>
+
+    <div class="col-12 text-center">
+      <h1>Guitar Chord Lookup</h1>
+    </div>
+
+    <!-- Icon Divider -->
+    <div class="col-lg-8 offset-lg-2 col-12">
+      <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-music"></i>
+        </div>
+        <div class="divider-custom-line"></div>
+      </div>
+    </div>
+
+
+    <div class="col-lg-8 offset-lg-2 col-12">
+      <h5>Press the strings on the diagram to make a guitar chord! Press the O's above the strings to represent a closed or open string.
+        To do a barre chord, enter the closed strings first, and then enter the number of the barred fret.
+        <br><br>
+        When you change the diagram, we will search over 100 chords and tell you if it matches any of them.
+        <br><br>
+        If you know the chord by name but not what it looks like, search for the chord below the diagram.
+        Select the chord you are looking for and it will be displayed on the diagram!
+        <br><br>
+        Based on the graphics on <a href="https://www.ultimate-guitar.com/">Ultimate Guitar</a>. Enjoy!
+     </h5>
+
+    </div>
     <br><br>
     <div class="container wrapper">
       <div class="row above-fret">
@@ -147,114 +189,155 @@
       </div>
 
     </div>
-
     <div class="chord-area text-center col-12">
       <h2 id="chordText">I don't know this chord</h2>
+    </div>
 
-      <div class="dropdown">
-      <div id="myDropdown" class="dropdown-content">
-        <input type="text" placeholder="Search..." id="myInput" onkeyup="filterFunction()">
-        <a onclick="displayChord(this)">A</a>
-        <a onclick="displayChord(this)">A6</a>
-        <a onclick="displayChord(this)">Ab</a>
-        <a onclick="displayChord(this)">Abm9</a>
-        <a onclick="displayChord(this)">Abmaj7</a>
-        <a onclick="displayChord(this)">Am</a>
-        <a onclick="displayChord(this)">Am/C</a>
-        <a onclick="displayChord(this)">Am/F#</a>
-        <a onclick="displayChord(this)">Am/G</a>
-        <a onclick="displayChord(this)">Amaj7</a>
-        <a onclick="displayChord(this)">A7</a>
-        <a onclick="displayChord(this)">A#/Bb</a>
-        <a onclick="displayChord(this)">A#/Bbm</a>
-        <a onclick="displayChord(this)">A#/Bbm7</a>
-        <a onclick="displayChord(this)">B</a>
-        <a onclick="displayChord(this)">B/E</a>
-        <a onclick="displayChord(this)">Bb</a>
-        <a onclick="displayChord(this)">Bbm</a>
-        <a onclick="displayChord(this)">Bb7</a>
-        <a onclick="displayChord(this)">Bbm7</a>
-        <a onclick="displayChord(this)">Bbmaj7</a>
-        <a onclick="displayChord(this)">Bm7sus4</a>
-        <a onclick="displayChord(this)">Bm</a>
-        <a onclick="displayChord(this)">B7</a>
-        <a onclick="displayChord(this)">C</a>
-        <a onclick="displayChord(this)">Cadd4</a>
-        <a onclick="displayChord(this)">Cadd9</a>
-        <a onclick="displayChord(this)">Cm</a>
-        <a onclick="displayChord(this)">Cmaj7</a>
-        <a onclick="displayChord(this)">Cmaj9</a>
-        <a onclick="displayChord(this)">Cm7</a>
-        <a onclick="displayChord(this)">CM7</a>
-        <a onclick="displayChord(this)">C7</a>
-        <a onclick="displayChord(this)">C/G</a>
-        <a onclick="displayChord(this)">C#m</a>
-        <a onclick="displayChord(this)">C#m7</a>
-        <a onclick="displayChord(this)">C#</a>
-        <a onclick="displayChord(this)">C#/Db</a>
-        <a onclick="displayChord(this)">C#/Dbm</a>
-        <a onclick="displayChord(this)">C#/Db7</a>
-        <a onclick="displayChord(this)">C#7sus4</a>
-        <a onclick="displayChord(this)">D</a>
-        <a onclick="displayChord(this)">Db7</a>
-        <a onclick="displayChord(this)">Dbmaj7</a>
-        <a onclick="displayChord(this)">Ddim7</a>
-        <a onclick="displayChord(this)">Dmaj7</a>
-        <a onclick="displayChord(this)">D/F</a>
-        <a onclick="displayChord(this)">Dm</a>
-        <a onclick="displayChord(this)">Dm7</a>
-        <a onclick="displayChord(this)">D7</a>
-        <a onclick="displayChord(this)">Dm/F#</a>
-        <a onclick="displayChord(this)">D#</a>
-        <a onclick="displayChord(this)">D#/Eb</a>
-        <a onclick="displayChord(this)">D#/Em</a>
-        <a onclick="displayChord(this)">D#/Eb7</a>
-        <a onclick="displayChord(this)">E</a>
-        <a onclick="displayChord(this)">Ebm</a>
-        <a onclick="displayChord(this)">Eb7</a>
-        <a onclick="displayChord(this)">Eb/Bb</a>
-        <a onclick="displayChord(this)">Em</a>
-        <a onclick="displayChord(this)">Emaj</a>
-        <a onclick="displayChord(this)">Emaj7</a>
-        <a onclick="displayChord(this)">Em7</a>
-        <a onclick="displayChord(this)">Esus4</a>
-        <a onclick="displayChord(this)">Emaj7sus4</a>
-        <a onclick="displayChord(this)">E7</a>
-        <a onclick="displayChord(this)">E5</a>
-        <a onclick="displayChord(this)">F</a>
-        <a onclick="displayChord(this)">F/A</a>
-        <a onclick="displayChord(this)">F/B</a>
-        <a onclick="displayChord(this)">F/C</a>
-        <a onclick="displayChord(this)">Fmaj7</a>
-        <a onclick="displayChord(this)">Fmaj7#5</a>
-        <a onclick="displayChord(this)">Fm</a>
-        <a onclick="displayChord(this)">F7</a>
-        <a onclick="displayChord(this)">F5</a>
-        <a onclick="displayChord(this)">F#/Gb</a>
-        <a onclick="displayChord(this)">F#</a>
-        <a onclick="displayChord(this)">F#m</a>
-        <a onclick="displayChord(this)">F#m7</a>
-        <a onclick="displayChord(this)">F#/Gb5</a>
-        <a onclick="displayChord(this)">F#/Gb7</a>
-        <a onclick="displayChord(this)">G</a>
-        <a onclick="displayChord(this)">Gb</a>
-        <a onclick="displayChord(this)">Gb7</a>
-        <a onclick="displayChord(this)">Gdim</a>
-        <a onclick="displayChord(this)">Gm</a>
-        <a onclick="displayChord(this)">Gm7</a>
-        <a onclick="displayChord(this)">Gmaj7</a>
-        <a onclick="displayChord(this)">G5</a>
-        <a onclick="displayChord(this)">G6</a>
-        <a onclick="displayChord(this)">G7</a>
-        <a onclick="displayChord(this)">G#</a>
-        <a onclick="displayChord(this)">G#m</a>
-        <a onclick="displayChord(this)">G#m7</a>
-        <a onclick="displayChord(this)">G#/Ab7</a>
+
+    <!-- Icon Divider -->
+    <div class="col-lg-8 offset-lg-2 col-12">
+      <div class="divider-custom divider-light">
+        <div class="divider-custom-line"></div>
+        <div class="divider-custom-icon">
+          <i class="fas fa-music"></i>
+        </div>
+        <div class="divider-custom-line"></div>
       </div>
     </div>
+
+    <div class="chord-area text-center col-12">
+      <h2 id="searchTitle">Search for a chord</h2>
+
+      <div class="dropdown">
+        <div id="dropdown" class="dropdown-content">
+          <input type="text" placeholder="Find chords..." id="searchInput" onkeyup="filterFunction()">
+          <div id="allChords">
+            <a onclick="displayChord(this)">A</a>
+            <a onclick="displayChord(this)">A6</a>
+            <a onclick="displayChord(this)">Ab</a>
+            <a onclick="displayChord(this)">Abm9</a>
+            <a onclick="displayChord(this)">Abmaj7</a>
+            <a onclick="displayChord(this)">Am</a>
+            <a onclick="displayChord(this)">Am/C</a>
+            <a onclick="displayChord(this)">Am/F#</a>
+            <a onclick="displayChord(this)">Am/G</a>
+            <a onclick="displayChord(this)">Amaj7</a>
+            <a onclick="displayChord(this)">A7</a>
+            <a onclick="displayChord(this)">A#/Bb</a>
+            <a onclick="displayChord(this)">A#/Bbm</a>
+            <a onclick="displayChord(this)">A#/Bbm7</a>
+            <a onclick="displayChord(this)">B</a>
+            <a onclick="displayChord(this)">B/E</a>
+            <a onclick="displayChord(this)">Bb</a>
+            <a onclick="displayChord(this)">Bbm</a>
+            <a onclick="displayChord(this)">Bb7</a>
+            <a onclick="displayChord(this)">Bbm7</a>
+            <a onclick="displayChord(this)">Bbmaj7</a>
+            <a onclick="displayChord(this)">Bm7sus4</a>
+            <a onclick="displayChord(this)">Bm</a>
+            <a onclick="displayChord(this)">B7</a>
+            <a onclick="displayChord(this)">C</a>
+            <a onclick="displayChord(this)">Cadd4</a>
+            <a onclick="displayChord(this)">Cadd9</a>
+            <a onclick="displayChord(this)">Cm</a>
+            <a onclick="displayChord(this)">Cmaj7</a>
+            <a onclick="displayChord(this)">Cmaj9</a>
+            <a onclick="displayChord(this)">Cm7</a>
+            <a onclick="displayChord(this)">CM7</a>
+            <a onclick="displayChord(this)">C7</a>
+            <a onclick="displayChord(this)">C/G</a>
+            <a onclick="displayChord(this)">C#m</a>
+            <a onclick="displayChord(this)">C#m7</a>
+            <a onclick="displayChord(this)">C#</a>
+            <a onclick="displayChord(this)">C#/Db</a>
+            <a onclick="displayChord(this)">C#/Dbm</a>
+            <a onclick="displayChord(this)">C#/Db7</a>
+            <a onclick="displayChord(this)">C#7sus4</a>
+            <a onclick="displayChord(this)">D</a>
+            <a onclick="displayChord(this)">Db7</a>
+            <a onclick="displayChord(this)">Dbmaj7</a>
+            <a onclick="displayChord(this)">Ddim7</a>
+            <a onclick="displayChord(this)">Dmaj7</a>
+            <a onclick="displayChord(this)">D/F</a>
+            <a onclick="displayChord(this)">Dm</a>
+            <a onclick="displayChord(this)">Dm7</a>
+            <a onclick="displayChord(this)">D7</a>
+            <a onclick="displayChord(this)">Dm/F#</a>
+            <a onclick="displayChord(this)">D#</a>
+            <a onclick="displayChord(this)">D#/Eb</a>
+            <a onclick="displayChord(this)">D#/Em</a>
+            <a onclick="displayChord(this)">D#/Eb7</a>
+            <a onclick="displayChord(this)">E</a>
+            <a onclick="displayChord(this)">Ebm</a>
+            <a onclick="displayChord(this)">Eb7</a>
+            <a onclick="displayChord(this)">Eb/Bb</a>
+            <a onclick="displayChord(this)">Em</a>
+            <a onclick="displayChord(this)">Emaj</a>
+            <a onclick="displayChord(this)">Emaj7</a>
+            <a onclick="displayChord(this)">Em7</a>
+            <a onclick="displayChord(this)">Esus4</a>
+            <a onclick="displayChord(this)">Emaj7sus4</a>
+            <a onclick="displayChord(this)">E7</a>
+            <a onclick="displayChord(this)">E5</a>
+            <a onclick="displayChord(this)">F</a>
+            <a onclick="displayChord(this)">F/A</a>
+            <a onclick="displayChord(this)">F/B</a>
+            <a onclick="displayChord(this)">F/C</a>
+            <a onclick="displayChord(this)">Fmaj7</a>
+            <a onclick="displayChord(this)">Fmaj7#5</a>
+            <a onclick="displayChord(this)">Fm</a>
+            <a onclick="displayChord(this)">F7</a>
+            <a onclick="displayChord(this)">F5</a>
+            <a onclick="displayChord(this)">F#/Gb</a>
+            <a onclick="displayChord(this)">F#</a>
+            <a onclick="displayChord(this)">F#m</a>
+            <a onclick="displayChord(this)">F#m7</a>
+            <a onclick="displayChord(this)">F#/Gb5</a>
+            <a onclick="displayChord(this)">F#/Gb7</a>
+            <a onclick="displayChord(this)">G</a>
+            <a onclick="displayChord(this)">Gb</a>
+            <a onclick="displayChord(this)">Gb7</a>
+            <a onclick="displayChord(this)">Gdim</a>
+            <a onclick="displayChord(this)">Gm</a>
+            <a onclick="displayChord(this)">Gm7</a>
+            <a onclick="displayChord(this)">Gmaj7</a>
+            <a onclick="displayChord(this)">G5</a>
+            <a onclick="displayChord(this)">G6</a>
+            <a onclick="displayChord(this)">G7</a>
+            <a onclick="displayChord(this)">G#</a>
+            <a onclick="displayChord(this)">G#m</a>
+            <a onclick="displayChord(this)">G#m7</a>
+            <a onclick="displayChord(this)">G#/Ab7</a>
+          </div>
+        </div>
+      </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="footer text-center">
+      <div class="container">
+        <div class="row">
+          <!-- Icons -->
+          <div class="col-12">
+            <h4 class="text-uppercase">Missed a chord?</h4>
+            <div class="row">
+              <div class="col-12 mb-lg-0">
+                <p>Create an issue on the GitHub page</p>
+                <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/Alex0Blackwell/reverse-guitar-chord" ata-toggle="tooltip" title="Github">
+                  <i class="fab fa-fw fa-github"></i>
+                </a>
+                <p>Github</p>
+              </div>
 
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
+    <!-- jQuery -->
+    <script src="./vendor/jquery/jquery.min.js"></script>
     <script src="./js/main.js" charset="utf-8"></script>
     <script src="./js/searchBar.js" charset="utf-8"></script>
   </body>
